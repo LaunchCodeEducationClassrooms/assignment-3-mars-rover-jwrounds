@@ -67,4 +67,13 @@ describe("Rover class", function() {
 
     expect(status).toBeFalse();
   });
+
+  it("responds with position for MOVE command", function(){
+    let rover = new Rover(53321743);
+    let commands = [new Command("MOVE", 10), new Command("STATUS_CHECK")];
+    let message = new Message("Two command message", commands);
+    rover.receiveMessage(message);
+
+    expect(rover.position).toEqual(10);
+  });
 });

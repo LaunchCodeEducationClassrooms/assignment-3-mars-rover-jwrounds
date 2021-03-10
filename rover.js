@@ -28,7 +28,7 @@ class Rover {
           commandObj["completed"] = true;
         } else if (command.commandType === "MOVE") {
           if (this.mode === "NORMAL") {
-            this.position += command.value;
+            this.position = command.value;
             commandObj["completed"] = true;
           }
           commandObj["completed"] = false;
