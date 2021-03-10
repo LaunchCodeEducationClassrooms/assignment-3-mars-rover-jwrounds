@@ -7,9 +7,10 @@ class Rover {
    }
 
    receiveMessage(message){
-     let response = {};
-     response["message"] = message.name;
-     return response;
+    let response = {};
+    response["message"] = message.name;
+  
+    return response;
    }
 }
 
