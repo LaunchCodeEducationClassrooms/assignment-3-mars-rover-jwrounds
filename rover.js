@@ -18,6 +18,16 @@ class Rover {
 
       message.commands.forEach(function(command){
         let commandObj = {};
+        
+        if (command.commandType === "STATUS_CHECK") {
+          commandObj["completed"] = true;
+          commandObj["roverStatus"] = {
+            mode: roverMode,
+            generatorWatts: roverWatts,
+            position: roverPosition
+          };
+        } 
+        response["results"].push(commandObj);
       });
     }
 

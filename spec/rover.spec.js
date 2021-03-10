@@ -34,5 +34,16 @@ describe("Rover class", function() {
     expect(receivedMessage.results.length).toBe(2);
   });
 
-  
+  it("responds correctly to status check command", function() {
+    let rover = new Rover(53321743);
+    let commands = [new Command("MOVE", 10), new Command("STATUS_CHECK")];
+    let message = new Message("Two command message", commands);
+    let receivedMessage = rover.receiveMessage(message);
+    let status = receivedMessage.results[1]["roverStatus"];
+
+    expect(Object.keys(status)).toEqual(["mode", "generatorWatts", "position"]);
+    expect(status.mode).toEqual("NORMAL");
+    expect(status.generatorWatts).toEqual(110);
+    expect(status.position).toEqual(53321753);
+  });
 });
