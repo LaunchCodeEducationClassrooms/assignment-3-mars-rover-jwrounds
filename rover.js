@@ -9,7 +9,18 @@ class Rover {
    receiveMessage(message){
     let response = {};
     response["message"] = message.name;
-  
+    response["results"] = [];
+
+    if (message.commands) {
+      let roverMode = this.mode;
+      let roverPosition = this.position;
+      let roverWatts = this.generatorWatts;
+
+      message.commands.forEach(function(command){
+        let commandObj = {};
+      });
+    }
+
     return response;
    }
 }

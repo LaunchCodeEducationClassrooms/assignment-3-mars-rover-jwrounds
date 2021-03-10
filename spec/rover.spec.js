@@ -18,7 +18,7 @@ describe("Rover class", function() {
 
   it("response returned by receiveMessage contains name of message", function(){
     let rover = new Rover(538743);
-    let commands = [new Command("MOVE", 120), new Command("LOW_POWER", 50)];
+    let commands = [new Command("MOVE", 120), new Command("MODE_CHANGE", "LOW_POWER")];
     let message = new Message("Two command message", commands);
     let receivedMessage = rover.receiveMessage(message);
 
@@ -33,4 +33,6 @@ describe("Rover class", function() {
 
     expect(receivedMessage.results.length).toBe(2);
   });
+
+  
 });
