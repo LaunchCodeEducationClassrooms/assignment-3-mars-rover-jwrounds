@@ -46,4 +46,16 @@ describe("Rover class", function() {
     expect(status.generatorWatts).toEqual(110);
     expect(status.position).toEqual(53321753);
   });
+
+  it("responds correctly to mode change command", function(){
+    let rover = new Rover(53321743);
+    let commands = [new Command("MODE_CHANGE", "LOW_POWER"), new Command("STATUS_CHECK")];
+    let message = new Message("Two command message", commands);
+    let receivedMessage = rover.receiveMessage(message);
+    let status = receivedMessage.results[0]["completed"];
+    let mode = rover.mode;
+
+    expect(status).toBeTrue();
+    expect(mode).toEqual("LOW_POWER");
+  });
 });

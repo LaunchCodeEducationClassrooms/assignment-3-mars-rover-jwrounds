@@ -26,6 +26,12 @@ class Rover {
             generatorWatts: roverWatts,
             position: roverPosition
           };
+        } else if (command.commandType === "MOVE") {
+          if (roverMode === "NORMAL") {
+            roverPosition += command.value;
+            commandObj["completed"] = true;
+          }
+          commandObj["completed"] = false;
         } 
         response["results"].push(commandObj);
       });
