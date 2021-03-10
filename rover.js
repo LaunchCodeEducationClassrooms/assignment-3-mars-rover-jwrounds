@@ -26,7 +26,13 @@ class Rover {
         } else if (command.commandType === "MODE_CHANGE") {
           this.mode = command.value;
           commandObj["completed"] = true;
-        } 
+        } else if (command.commandType === "MOVE") {
+          if (this.mode === "NORMAL") {
+            this.position += command.value;
+            commandObj["completed"] = true;
+          }
+          commandObj["completed"] = false;
+        }
         response["results"].push(commandObj);
       }
     }
