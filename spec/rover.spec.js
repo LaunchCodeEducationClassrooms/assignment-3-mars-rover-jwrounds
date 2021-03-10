@@ -57,4 +57,14 @@ describe("Rover class", function() {
     expect(status).toBeTrue();
     expect(mode).toEqual("LOW_POWER");
   });
+
+  it("responds with false completed value when trying to move in LOW_POWER mode", function(){
+    let rover = new Rover(53321743, "LOW_POWER");
+    let commands = [new Command("MOVE", 120), new Command("STATUS_CHECK")];
+    let message = new Message("Two command message", commands);
+    let receivedMessage = rover.receiveMessage(message);
+    let status = receivedMessage.results[0]["completed"];
+
+    expect(status).toBeFalse();
+  });
 });
