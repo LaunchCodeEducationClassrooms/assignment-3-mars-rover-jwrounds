@@ -1,9 +1,9 @@
 class Rover {
    // Write code here!
-   constructor(position, mode = "NORMAL", generatorWatts = 110) {
+   constructor(position) {
      this.position = position;
-     this.mode = mode;
-     this.generatorWatts = generatorWatts;
+     this.mode = "NORMAL";
+     this.generatorWatts = 110;
    }
 
    receiveMessage(message){
@@ -17,6 +17,7 @@ class Rover {
         let command = message.commands[i];
 
         if (command.commandType === "STATUS_CHECK") {
+          
           commandObj["completed"] = true;
           commandObj["roverStatus"] = {
             mode: this.mode,
@@ -36,7 +37,6 @@ class Rover {
         response["results"].push(commandObj);
       }
     }
-    
     return response;
    }
 }
